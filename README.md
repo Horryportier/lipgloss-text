@@ -1,7 +1,8 @@
 # lipgloss-text
 Lipgloss helper libraly for making styled text with ease 
     
-![Made with VHS](https://vhs.charm.sh/vhs-1NRo0RWYDz8gny5vZCAG4D.gif)
+![Made with VHS](https://vhs.charm.sh/vhs-5AYoZ7xWGYNVishewRhD5q.gif)
+
 
 # how to use 
 
