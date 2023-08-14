@@ -85,7 +85,7 @@ func LineFrom(t interface{}, style ...lipgloss.Style) Line {
         }
         return spans
     default: 
-        return []Span{SpanFrom(fmt.Sprintf("type (%T) not suported! for Line", t), errStyle)}
+        return []Span{SpanFrom(fmt.Sprintf("type (%T) not suported!", t), errStyle)}
     }
 }
 

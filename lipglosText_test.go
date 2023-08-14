@@ -16,6 +16,11 @@ var (
 
 )
 
+type TestInvalidType struct{
+    x string
+    y float32
+}
+
 func TestSpan(t *testing.T)  {
     if true {
         span := SpanFrom("test span", s3)
@@ -63,6 +68,7 @@ func TestText(t *testing.T) {
         []float64{2., 3.},
         true,
         []bool{true, false},
+        TestInvalidType{ x: "invalid type ", y: 3.14 },
     }
 
     if true {
