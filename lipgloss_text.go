@@ -59,20 +59,20 @@ func LineFrom(t interface{}, style ...lipgloss.Style) Line {
         return spans
 
     case float32:
-        return []Span{SpanFrom(fmt.Sprint(t.(int)), final_style)}
+        return []Span{SpanFrom(fmt.Sprintf("%.2f",t.(float32)), final_style)}
     case []float32:
         var spans []Span
         for _,s := range t.([]float32) {
-            spans = append(spans, SpanFrom(fmt.Sprint(s), final_style))
+            spans = append(spans, SpanFrom(fmt.Sprintf("%.2f",s), final_style))
         }
         return spans
 
     case float64:
-        return []Span{SpanFrom(fmt.Sprint(t.(float64)), final_style)}
+        return []Span{SpanFrom(fmt.Sprintf("%.2f",t.(float64)), final_style)}
     case []float64:
         var spans []Span
         for _,s := range t.([]float64) {
-            spans = append(spans, SpanFrom(fmt.Sprint(s), final_style))
+            spans = append(spans, SpanFrom(fmt.Sprintf("%.2f", s), final_style))
         }
         return spans
 
