@@ -89,6 +89,23 @@ func LineFrom(t interface{}, style ...lipgloss.Style) Line {
     }
 }
 
+func (l *Line) Append(rhs ...interface{}) error {
+    for _, v := range rhs {
+        switch v.(type) {
+        case Line:
+            *l = append(*l, v.(Line)...)
+        case []Line:
+            for _, x := range v.([]Line) {
+                *l = append(*l, x...)
+            }
+        default: 
+            fmt.Errorf("wrong type [%T] for appendig to Line", v)
+        }
+    }
+    return nil
+}
+
+
 func (l Line) Render(options ...Option) string{
     enable_style := true
     delimiter := " "
@@ -130,6 +147,22 @@ func TextFrom(t interface{}, style ...lipgloss.Style) Text {
     default: 
         return []Line{LineFrom(t, final_style)}
     }
+}
+
+func (t *Text) Append(rhs ...interface{}) error {
+    for _, v := range rhs {
+        switch v.(type) {
+        case Text:
+            *t = append(*t, v.(Text)...)
+        case []Line:
+            for _, x := range v.([]Text) {
+                *t = append(*t, x...)
+            }
+        default: 
+            fmt.Errorf("wrong type [%T] for appendig to Text", v)
+        }
+    }
+    return nil
 }
 
 func (t Text) Render(options ...Option) string{

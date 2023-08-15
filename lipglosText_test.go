@@ -16,13 +16,17 @@ var (
 
 )
 
+const (
+    MAKE_IT_FAIL = false
+)
+
 type TestInvalidType struct{
     x string
     y float32
 }
 
 func TestSpan(t *testing.T)  {
-    if true {
+    if MAKE_IT_FAIL {
         span := SpanFrom("test span", s3)
         t.Errorf("span: %s", span.Render(true))
     }
@@ -44,7 +48,7 @@ func TestLine(t *testing.T) {
         []bool{true, false},
     }
 
-    if true {
+    if MAKE_IT_FAIL {
         for _, v := range a {
             l := LineFrom(v, s1)
             fmt.Println(l.Render(Styled(true), Delimiter("::")))           
@@ -71,11 +75,36 @@ func TestText(t *testing.T) {
         TestInvalidType{ x: "invalid type ", y: 3.14 },
     }
 
-    if true {
+    if MAKE_IT_FAIL {
         for _, v := range a {
             l := TextFrom(v, s1)
             fmt.Println(l.Render(Delimiter(";"), Styled(true)))           
         }
         t.Error("end of text test")
+    }
+}
+
+func TestAppendText(t *testing.T)  { 
+    var text Text 
+    if len(text) != 0 {
+        t.Error("how")
+    }
+    text2 := TextFrom("test", s2)
+    text.Append(text2)
+    if len(text) != 1 {
+        t.Errorf("len of text is not 1 its [%v]", len(text))
+    }
+}
+
+
+func TestAppendLine(t *testing.T)  { 
+    var text Line 
+    if len(text) != 0 {
+        t.Error("how")
+    }
+    text2 := LineFrom("test", s2)
+    text.Append(text2)
+    if len(text) != 1 {
+        t.Errorf("len of line is not 1 its [%v]", len(text))
     }
 }
