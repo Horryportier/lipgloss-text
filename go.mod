@@ -2,9 +2,7 @@ module github.com/Horryportier/lipgloss-text
 
 go 1.20
 
-require (
-	github.com/charmbracelet/lipgloss v0.7.1
-)
+require github.com/charmbracelet/lipgloss v0.7.1
 
 require (
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
